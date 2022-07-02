@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="doc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/1_WiSe_21_22/AIN1_Programmiertechnik1/prog1-uebungen/doc/type-search-index.zip!/" />
+      <root url="jar://$PROJECT_DIR$/1_WiSe_21_22/AIN1_Programmiertechnik1/prog1-uebungen/doc/package-search-index.zip!/" />
+      <root url="jar://$PROJECT_DIR$/1_WiSe_21_22/AIN1_Programmiertechnik1/prog1-uebungen/doc/member-search-index.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
