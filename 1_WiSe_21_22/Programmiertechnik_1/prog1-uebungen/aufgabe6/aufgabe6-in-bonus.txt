@@ -1,0 +1,20 @@
+Softwaremodelierung NB
+Programmiertechnik 1 NB
+Mathematik 1 NB
+Digitaltechnik BE
+
+Softwaremodelierung 30
+Programmiertechnik 1 3.7
+Mathematik 1 2.3
+Digitaltechnik 4.0
+
+
+Softwaremodelierung BE
+Programmiertechnik 1 BE
+Mathematik 1 BE
+Digitaltechnik NB
+
+Softwaremodelierung 10
+Programmiertechnik 1 1.7
+Mathematik 1 3.3
+Digitaltechnik 5.0

@@ -1,0 +1,30 @@
+<!-- DIESE DATEI WIRD IGNORIERT, ES WIRD DIE "template.min.html" DATEI VERWENDET! -->
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../assets/template.css" rel="stylesheet" />
+    <style>
+    </style>
+    <title>Notenspiegel</title>
+  </head>
+  <body>
+    <h1>Notenspiegel f&uuml;r {{ name }}</h1>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+              <th>Fach:</th>
+              <th>Art:</th>
+              <th>Note:</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ ratingList }}
+        </tbody>
+    </table>
+    <hr />
+    <p>L = Leistungsnachweis, S = Schein</p>
+  </body>
+</html>

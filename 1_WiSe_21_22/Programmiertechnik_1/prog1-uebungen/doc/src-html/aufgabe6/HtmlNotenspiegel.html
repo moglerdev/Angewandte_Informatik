@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+</head>
+<body>
+<main role="main">
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span><a id="line.1">// HtmlNotenspiegel.java</a>
+<span class="sourceLineNo">002</span><a id="line.2">package aufgabe6;</a>
+<span class="sourceLineNo">003</span><a id="line.3">import java.io.BufferedReader;</a>
+<span class="sourceLineNo">004</span><a id="line.4">import java.io.InputStreamReader;</a>
+<span class="sourceLineNo">005</span><a id="line.5">import java.io.PrintWriter;</a>
+<span class="sourceLineNo">006</span><a id="line.6">import java.io.FileNotFoundException;</a>
+<span class="sourceLineNo">007</span><a id="line.7">import java.io.IOException;</a>
+<span class="sourceLineNo">008</span><a id="line.8"></a>
+<span class="sourceLineNo">009</span><a id="line.9">/**</a>
+<span class="sourceLineNo">010</span><a id="line.10"> * Die Main-Klasse HtmlNotenspiegel liest die Namen von F&amp;auml;chern</a>
+<span class="sourceLineNo">011</span><a id="line.11"> * mit den zugeh&amp;ouml;rigen Noten in eine verkettete Liste ein und</a>
+<span class="sourceLineNo">012</span><a id="line.12"> * gibt dann einen Notenspiegel im HTML-Format aus.</a>
+<span class="sourceLineNo">013</span><a id="line.13"> * Aufruf mit dem Namen der Studentin / des Studenten als Argument(e)</a>
+<span class="sourceLineNo">014</span><a id="line.14"> * @author H.Drachenfels</a>
+<span class="sourceLineNo">015</span><a id="line.15"> * @version 28.7.2021</a>
+<span class="sourceLineNo">016</span><a id="line.16"> */</a>
+<span class="sourceLineNo">017</span><a id="line.17">public final class HtmlNotenspiegel {</a>
+<span class="sourceLineNo">018</span><a id="line.18">    private HtmlNotenspiegel() { }</a>
+<span class="sourceLineNo">019</span><a id="line.19"></a>
+<span class="sourceLineNo">020</span><a id="line.20">    /**</a>
+<span class="sourceLineNo">021</span><a id="line.21">     * liest die Namen von F&amp;auml;chern mit den zugeh&amp;ouml;rigen Beurteilungen</a>
+<span class="sourceLineNo">022</span><a id="line.22">     * ein und schreibt einen Notenspiegel als Datei im HTML-Format.</a>
+<span class="sourceLineNo">023</span><a id="line.23">     * &lt;p&gt;</a>
+<span class="sourceLineNo">024</span><a id="line.24">     * Jede Eingabezeile muss einen Fachnamen und eine Beurteilung enthalten.</a>
+<span class="sourceLineNo">025</span><a id="line.25">     * Fachnamen m&amp;uuml;ssen laut</a>
+<span class="sourceLineNo">026</span><a id="line.26">     * {@link aufgabe6.Faecher#istZulaessig} erlaubt sein.</a>
+<span class="sourceLineNo">027</span><a id="line.27">     * Bei unbenoteten F&amp;auml;chern muss die Beurteilung</a>
+<span class="sourceLineNo">028</span><a id="line.28">     * &lt;code&gt;BE&lt;/code&gt; f&amp;uuml;r bestanden oder</a>
+<span class="sourceLineNo">029</span><a id="line.29">     * &lt;code&gt;NB&lt;/code&gt; f&amp;uuml;r nicht bestanden lauten.</a>
+<span class="sourceLineNo">030</span><a id="line.30">     * Bei benoteten F&amp;auml;chern muss die Note laut</a>
+<span class="sourceLineNo">031</span><a id="line.31">     * {@link aufgabe5.Note#valueOf(java.lang.String)} erlaubt sein.</a>
+<span class="sourceLineNo">032</span><a id="line.32">     * Der Dateinname des Notenspiegels wird aus den Argumenten gebildet.&lt;/p&gt;</a>
+<span class="sourceLineNo">033</span><a id="line.33">     * @param args Vorname(n) Nachname (mindestens zwei Argumente)</a>
+<span class="sourceLineNo">034</span><a id="line.34">     * @throws IOException bei Einleseproblemen</a>
+<span class="sourceLineNo">035</span><a id="line.35">     */</a>
+<span class="sourceLineNo">036</span><a id="line.36">    public static void main(String[] args) throws IOException {</a>
+<span class="sourceLineNo">037</span><a id="line.37">        if (args.length &lt; 2) {</a>
+<span class="sourceLineNo">038</span><a id="line.38">            System.err.println(</a>
+<span class="sourceLineNo">039</span><a id="line.39">                "Aufruf: java HtmlNotenspiegel Vorname(n) Nachname");</a>
+<span class="sourceLineNo">040</span><a id="line.40">            System.exit(1);</a>
+<span class="sourceLineNo">041</span><a id="line.41">        }</a>
+<span class="sourceLineNo">042</span><a id="line.42"></a>
+<span class="sourceLineNo">043</span><a id="line.43">        LeistungsListe leistungen = new LeistungsListe();</a>
+<span class="sourceLineNo">044</span><a id="line.44">        einlesen(leistungen);</a>
+<span class="sourceLineNo">045</span><a id="line.45">        ausgeben(args, leistungen);</a>
+<span class="sourceLineNo">046</span><a id="line.46">    }</a>
+<span class="sourceLineNo">047</span><a id="line.47"></a>
+<span class="sourceLineNo">048</span><a id="line.48">    private static void einlesen(LeistungsListe leistungen)</a>
+<span class="sourceLineNo">049</span><a id="line.49">        throws IOException {</a>
+<span class="sourceLineNo">050</span><a id="line.50"></a>
+<span class="sourceLineNo">051</span><a id="line.51">        System.err.println("Faecher mit Noten eingeben (Ende mit Strg-D):");</a>
+<span class="sourceLineNo">052</span><a id="line.52">        BufferedReader eingabe</a>
+<span class="sourceLineNo">053</span><a id="line.53">            = new BufferedReader(new InputStreamReader(System.in));</a>
+<span class="sourceLineNo">054</span><a id="line.54"></a>
+<span class="sourceLineNo">055</span><a id="line.55">        String zeile;</a>
+<span class="sourceLineNo">056</span><a id="line.56">        while ((zeile = eingabe.readLine()) != null) {</a>
+<span class="sourceLineNo">057</span><a id="line.57">            zeile = zeile.trim();</a>
+<span class="sourceLineNo">058</span><a id="line.58">            if (zeile.length() == 0) {</a>
+<span class="sourceLineNo">059</span><a id="line.59">                continue; // Leerzeile</a>
+<span class="sourceLineNo">060</span><a id="line.60">            }</a>
+<span class="sourceLineNo">061</span><a id="line.61"></a>
+<span class="sourceLineNo">062</span><a id="line.62">            try {</a>
+<span class="sourceLineNo">063</span><a id="line.63">                String[] woerter = zeile.split("\\s+");</a>
+<span class="sourceLineNo">064</span><a id="line.64">                if (woerter.length &lt; 2) {</a>
+<span class="sourceLineNo">065</span><a id="line.65">                    throw new IllegalArgumentException(</a>
+<span class="sourceLineNo">066</span><a id="line.66">                        "unvollstaendige Zeile " + zeile);</a>
+<span class="sourceLineNo">067</span><a id="line.67">                }</a>
+<span class="sourceLineNo">068</span><a id="line.68"></a>
+<span class="sourceLineNo">069</span><a id="line.69">                String note = woerter[woerter.length - 1];</a>
+<span class="sourceLineNo">070</span><a id="line.70">                String fach = zeile.substring(0, zeile.lastIndexOf(note));</a>
+<span class="sourceLineNo">071</span><a id="line.71"></a>
+<span class="sourceLineNo">072</span><a id="line.72">                Leistung fachnote;</a>
+<span class="sourceLineNo">073</span><a id="line.73">                if (note.equals("BE")) {</a>
+<span class="sourceLineNo">074</span><a id="line.74">                    fachnote = new UnbenoteteLeistung(fach.trim(), true);</a>
+<span class="sourceLineNo">075</span><a id="line.75">                } else if (note.equals("NB")) {</a>
+<span class="sourceLineNo">076</span><a id="line.76">                    fachnote = new UnbenoteteLeistung(fach.trim(), false);</a>
+<span class="sourceLineNo">077</span><a id="line.77">                } else {</a>
+<span class="sourceLineNo">078</span><a id="line.78">                    fachnote = new BenoteteLeistung(fach.trim(), note);</a>
+<span class="sourceLineNo">079</span><a id="line.79">                }</a>
+<span class="sourceLineNo">080</span><a id="line.80"></a>
+<span class="sourceLineNo">081</span><a id="line.81">                leistungen.insert(fachnote);</a>
+<span class="sourceLineNo">082</span><a id="line.82">            } catch (IllegalArgumentException x) {</a>
+<span class="sourceLineNo">083</span><a id="line.83">                System.err.printf("Falscheingabe ignoriert: %s%n",</a>
+<span class="sourceLineNo">084</span><a id="line.84">                                  x.getMessage());</a>
+<span class="sourceLineNo">085</span><a id="line.85">                continue;</a>
+<span class="sourceLineNo">086</span><a id="line.86">            }</a>
+<span class="sourceLineNo">087</span><a id="line.87">        }</a>
+<span class="sourceLineNo">088</span><a id="line.88">    }</a>
+<span class="sourceLineNo">089</span><a id="line.89"></a>
+<span class="sourceLineNo">090</span><a id="line.90">    private static void ausgeben(String[] name, LeistungsListe leistungen)</a>
+<span class="sourceLineNo">091</span><a id="line.91">        throws IOException {</a>
+<span class="sourceLineNo">092</span><a id="line.92"></a>
+<span class="sourceLineNo">093</span><a id="line.93">        StringBuilder sb = new StringBuilder();</a>
+<span class="sourceLineNo">094</span><a id="line.94">        for (String s : name) {</a>
+<span class="sourceLineNo">095</span><a id="line.95">            sb.append(s);</a>
+<span class="sourceLineNo">096</span><a id="line.96">        }</a>
+<span class="sourceLineNo">097</span><a id="line.97"></a>
+<span class="sourceLineNo">098</span><a id="line.98">        try {</a>
+<span class="sourceLineNo">099</span><a id="line.99">            PrintWriter ausgabe</a>
+<span class="sourceLineNo">100</span><a id="line.100">                = new PrintWriter(sb.toString() + ".html", "UTF-8");</a>
+<span class="sourceLineNo">101</span><a id="line.101">            HtmlFormat.ausgeben(ausgabe, name, leistungen);</a>
+<span class="sourceLineNo">102</span><a id="line.102">            ausgabe.close();</a>
+<span class="sourceLineNo">103</span><a id="line.103">        } catch (FileNotFoundException x) {</a>
+<span class="sourceLineNo">104</span><a id="line.104">            System.err.println(x.getMessage());</a>
+<span class="sourceLineNo">105</span><a id="line.105">            System.exit(1);</a>
+<span class="sourceLineNo">106</span><a id="line.106">        }</a>
+<span class="sourceLineNo">107</span><a id="line.107">    }</a>
+<span class="sourceLineNo">108</span><a id="line.108">}</a>
+<span class="sourceLineNo">109</span><a id="line.109"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</main>
+</body>
+</html>

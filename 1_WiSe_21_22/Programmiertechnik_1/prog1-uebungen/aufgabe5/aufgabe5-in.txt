@@ -1,0 +1,23 @@
+Systemmodellierung 10
+Programmiertechnik1 13
+Mathematik1 17
+Digitaltechnik 20
+Mathematik1 23
+Programmiertechnik1 27
+Digitaltechnik 30
+Mathematik1 33
+Digitaltechnik 37
+Systemmodellierung 40
+Programmiertechnik1 50
+
+Systemmodellierung 0
+Programmiertechnik1 12
+Mathematik1 15
+Systemmodellierung 19
+Programmiertechnik1 24
+Mathematik1 26
+Systemmodellierung 31
+Programmiertechnik1 34
+Systemmodellierung 36
+Mathematik1 47
+Systemmodellierung 53
