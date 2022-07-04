@@ -110,3 +110,5 @@ depend
 out.txt
 scoreboard
 notenspiegel
+/src/aufgabe07/filesize
+/src/aufgabe07/filecopy

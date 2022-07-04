@@ -37,10 +37,10 @@
 #  touch Dateiname
 # Informieren Sie sich mit man touch über das Kommando.
 
-CPP = g++ -c #-fno-elide-constructors
+CXX = g++ -c #-fno-elide-constructors
 STD=c++11
 
-CPPFLAGS = -Wall -Wextra -Werror -Weffc++ -Wold-style-cast -std=$(STD) -pedantic
+CXXFLAGS = -Wall -Wextra -Werror -Weffc++ -Wold-style-cast -std=$(STD) -pedantic
 
 CPPCHECK = cppcheck --enable=warning,style --std=$(STD)
 
@@ -51,9 +51,9 @@ LIB_NAMES = \
 	libaufgabe06.a \
 	libaufgabe06.so
 
-BUILD_STATIC = ar rvs $(LIB_COMBO) $(OBJECTS)
-BUILD_DYNAMIC = g++ -shared -fPIC $(OBJECTS:.o=.cpp) -o $(LIB_COMBO)
-RM = rm -f $(OBJECTS) $(LIB_NAMES) depend
+BUILD_STATIC = ar rvs
+BUILD_DYNAMIC = g++ -shared
+RM = rm -f
 
 OBJECTS = \
     benotung.o \
@@ -66,20 +66,25 @@ HEADERS = $(OBJECTS:.o=.h)
 
 all: lib$(LIBNAME).$(LIBTYPE)
 
-lib$(LIBNAME).a:
-	$(CPP) $(CPPFLAGS) $(SOURCES)
-	$(BUILD_STATIC)
+lib$(LIBNAME).a: $(OBJECTS)
+	$(BUILD_STATIC) $@ $^
 
-lib$(LIBNAME).so:
-	$(BUILD_DYNAMIC)
+lib$(LIBNAME).so: $(OBJECTS)
+	$(BUILD_DYNAMIC) $^ -o $@
 
 clean:
-	$(RM)
+	$(RM) $(OBJECTS) $(LIB_NAMES) depend
 
 depend: $(SOURCES) $(HEADERS)
-	$(CPP) $(CPPFLAGS) -MM $(SOURCES) > $@
+	$(CXX) $(CPPFLAGS) -MM $(SOURCES) > $@
 
 cppcheck: $(OBJECTS:.o=.cpp)
 	$(CPPCHECK) $^
+
+astyle: $(SOURCES) $(HEADERS)
+	$(ASTYLE) $^
+
+%.o: %.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $<
 
 include depend

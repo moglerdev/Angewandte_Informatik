@@ -11,6 +11,7 @@ This Repository holds the solutions for the labor exercises in "Systemprogrammie
 - [X] [Aufgabe 04](./src/aufgabe04)
 - [X] [Aufgabe 05](./src/aufgabe05)
 - [X] [Aufgabe 06](./src/aufgabe06)
+- [X] [Aufgabe 07](./src/aufgabe07)
 
 ## MIT License
 

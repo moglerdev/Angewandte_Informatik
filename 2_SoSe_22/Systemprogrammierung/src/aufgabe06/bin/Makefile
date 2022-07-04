@@ -10,37 +10,48 @@
 # CPPFLAGS vorgesehen ist. Die Option -L gehört zu den Linker-Optionen,
 # für die die Variable LDFLAGS vorgesehen ist.
 
-CPP = g++ #-fno-elide-constructors
+CXX = g++ -g#-fno-elide-constructors
 STD=c++11
 
-CPPFLAGS = -I ../lib -Wall -Wextra -Werror -Weffc++ -Wold-style-cast -std=$(STD) -pedantic
-LDFLAGS = -L../lib -laufgabe06
+LIBRARY =
+
+LIBNAME = aufgabe06
+LDLIBS = -l$(LIBNAME)
+LIBTYPE = a
+LDFLAGS = -L$(LIBRARY)
+
+CPPFLAGS =-I$(LIBRARY)
+CXXFLAGS = -Wall -fPIC -Wextra -Werror -std=$(STD) -pedantic
 
 CPPCHECK = cppcheck --enable=warning,style --std=$(STD)
-RM = rm -f $(OBJECTS) $(TARGET) depend
-
-OBJECTS = \
-	notenspiegel.o
-SOURCES = $(OBJECTS:.o=.cpp)
-# HEADERS = $(OBJECTS:.o=.h)
+RM = rm -f
 
 TARGET = notenspiegel
+
+
+OBJECTS = \
+	$(TARGET).o
+
+SOURCES = $(OBJECTS:.o=.cpp)
+HEADERS = \
+	$(LIBRARY)benotung.h \
+	$(LIBRARY)fachnote.h \
+	$(LIBRARY)fachnoten_liste.h \
 
 .PHONY: all clean cppcheck
 
 all: $(TARGET)
 
-$(TARGET): $(TARGET).o $(OBJECTS)
-	$(CPP) -c $(CPPFLAGS) $(SOURCES)
-	$(CPP) -g $(CPPFLAGS) -o $@ $^ $(LDFLAGS)
-
 clean:
-	$(RM)
+	rm -f $(TARGET) $(OBJECTS) depend
+
+$(TARGET): $(OBJECTS) $(LIBRARY)lib$(LIBNAME).$(LIBTYPE)
+	$(CXX) $(LDFLAGS) $< $(LDLIBS) -o $@
+
+%.o: %.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDLIBS) -c  $< -o $@
 
 depend: $(SOURCES) $(HEADERS)
-	$(CPP) -g $(CPPFLAGS) -MM $(SOURCES) > $@
-
-cppcheck: $(OBJECTS:.o=.cpp)
-	$(CPPCHECK) $^
+	$(CXX) $(CPPFLAGS) -MM $(SOURCES) > $@
 
 include depend
