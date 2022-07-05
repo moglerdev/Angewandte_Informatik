@@ -47,7 +47,7 @@ Schreiben Sie ein Makefile, dass alle Quelldateien Ihres C-Programms aus Aufgabe
 
 Erstellen Sie mit C-Definitionen und -Anweisungen die folgende Hauptspeicherbelegung:
 
-![aufgabe_3_overview.png](./aufgabe_3_overview.png)
+![aufgabe_3_overview.png](./part_3/aufgabe_3_overview.png)
 
 ## Aufgabe 4
 
