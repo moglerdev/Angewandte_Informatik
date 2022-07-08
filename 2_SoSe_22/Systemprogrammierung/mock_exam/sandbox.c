@@ -107,11 +107,34 @@ int64_t run() {
     return 0;
 }
 
+int hash_string(const unsigned char* str, const unsigned char* buffer, unsigned char* (*_sha)(const unsigned char*, size_t, unsigned char*), size_t digest_length) {
+    unsigned char hash[digest_length];
+    _sha(str, strlen(str), hash);
 
-int64_t main(void) {
-    int64_t res = run();
+    for(int i = 0; i < digest_length; ++i) {
+        if (sprintf((char*)&(buffer[i*2]), "%02x", hash[i]) < 0) {
+            return -1;
+        }
+    }
+    
+    return 0;
+}
 
-    free_space();
+//unsigned char *SHA1(const unsigned char *d, size_t n, unsigned char *md)
+int64_t main(int argc, const char** argv) {
+    //int64_t res = run();
 
-    return res;
+    const char* pw = "Hallo World";
+
+    unsigned char readable[SHA_DIGEST_LENGTH * 2];
+    if(hash_string(pw, readable, SHA1, SHA_DIGEST_LENGTH) != 0) {
+        printf("ERROR!");
+        return -1;
+    }
+
+    printf("%s\n\n", readable);
+
+    //free_space();
+
+    return 0;
 }
