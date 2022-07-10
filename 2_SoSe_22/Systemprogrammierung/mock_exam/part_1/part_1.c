@@ -8,7 +8,7 @@ typedef struct {
 } room;             // 
 
 
-int main(const int argc, const char** argv) {
+int part1_main(const int argc, const char** argv) {
     int a = 1;
     int* b = &a;
 
