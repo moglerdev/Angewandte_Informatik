@@ -90,7 +90,7 @@ int main(const int argc, const char** argv)
                " nicht allokiert werden");
         return -1;
     }
-
+    
     strncat(s, a[0], max);
     for (int j = 1; j < n; ++j)
     {

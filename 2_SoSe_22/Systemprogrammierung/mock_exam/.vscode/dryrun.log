@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/mogler/repos/HTWG/AIN/2_SoSe_22/Systemprogrammierung/mock_exam'
+make: Leaving directory '/home/mogler/repos/HTWG/AIN/2_SoSe_22/Systemprogrammierung/mock_exam'
+ 
+make: *** No targets.  Stop.
+
