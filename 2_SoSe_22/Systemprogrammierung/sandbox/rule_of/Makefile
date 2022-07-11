@@ -7,14 +7,18 @@ TARGET = rule_of
 OBJECTS = \
     HeapData.o \
 
-.PHONY: all clean cppcheck
+.PHONY: all clean cppcheck start
 
-all: $(TARGET)
+all: $(TARGET).out
 
 clean:
-	rm -f $(TARGET) $(TARGET).o $(OBJECTS)
+	rm -f $(TARGET).out $(TARGET).o $(OBJECTS)
 
-$(TARGET): $(TARGET).o $(OBJECTS)
+start: clean all
+	clear
+	./$(TARGET).out
+
+$(TARGET).out: $(TARGET).o $(OBJECTS)
 	$(CXX) $(LDFLAGS) -o $@ $^
 
 cppcheck: $(TARGET).cpp $(OBJECTS:.o=.cpp)

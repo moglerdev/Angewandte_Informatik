@@ -29,7 +29,7 @@ public:
     /// <param name="other">Objekt von wo es kopiert wird</param>
     /// <returns></returns>
     HeapData& operator=(const HeapData& other);
-    
+
     /// <summary>
     /// Rule 3 - Destructor
     /// <para>delete obj;</para>
