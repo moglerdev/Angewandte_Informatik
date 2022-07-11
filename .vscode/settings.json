@@ -1,13 +1,9 @@
 {
-  "makefile.extensionOutputFolder": "./.vscode",
-  "C_Cpp.dimInactiveRegions": false,
   "files.associations": {
     "*.tcc": "cpp",
     "cctype": "cpp",
     "clocale": "cpp",
     "cmath": "cpp",
-    "compare": "cpp",
-    "concepts": "cpp",
     "cstdint": "cpp",
     "cstdio": "cpp",
     "cstdlib": "cpp",
@@ -21,7 +17,6 @@
     "istream": "cpp",
     "limits": "cpp",
     "new": "cpp",
-    "numbers": "cpp",
     "ostream": "cpp",
     "stdexcept": "cpp",
     "streambuf": "cpp",
@@ -29,8 +24,6 @@
     "string_view": "cpp",
     "system_error": "cpp",
     "type_traits": "cpp",
-    "typeinfo": "cpp",
-    "wuerfel.h": "c",
-    "quadrat.h": "c"
+    "typeinfo": "cpp"
   }
 }

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 10 15:52:02 2022
+# Make data base, printed on Mon Jul 11 23:53:50 2022
 
 # Variables
 
@@ -61,7 +61,7 @@ VSCODE_CODE_CACHE_PATH = /home/mogler/.config/Code/CachedData/92d25e35d9bf1a6b16
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.KO29O1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.LNP2O1
 # default
 .LOADED := 
 # default
@@ -99,7 +99,7 @@ SNAP_REEXEC =
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 58023
+VSCODE_PID = 93083
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -107,7 +107,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/mogler-pc:@/tmp/.ICE-unix/2618,unix/mogler-pc:/tmp/.ICE-unix/2618
+SESSION_MANAGER = local/mogler-pc:@/tmp/.ICE-unix/2833,unix/mogler-pc:/tmp/.ICE-unix/2833
 # automatic
 *F = $(notdir $*)
 # environment
@@ -155,7 +155,7 @@ LC_TIME = de_DE.UTF-8
 # environment
 SNAP = /snap/code/100
 # environment
-INVOCATION_ID = a429758648ee442890eae879ffecd5b1
+INVOCATION_ID = 3917a6ed763b45ceb233ee7f4068197e
 # environment
 SNAP_REVISION = 100
 # environment
@@ -191,7 +191,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 2636
+SYSTEMD_EXEC_PID = 2850
 # environment
 DISPLAY = :0
 # environment
@@ -207,11 +207,11 @@ SNAP_DATA = /var/snap/code/100
 # environment
 SNAP_CONTEXT = aVZ9wEmhybRn3fDHgxE9aSKK2_PIggAHo7-H1xcp7jUU3W0Nl_LJ
 # environment
-MANAGERPID = 2478
+MANAGERPID = 2692
 # environment
 LC_MEASUREMENT = de_DE.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 57972
+GIO_LAUNCHED_DESKTOP_FILE_PID = 93034
 # environment
 _ = /snap/code/100/usr/share/code/code
 # environment
@@ -223,7 +223,7 @@ GDK_PIXBUF_MODULE_FILE = /home/mogler/snap/code/common/.cache/gdk-pixbuf-loaders
 # environment
 NVM_CD_FLAGS = 
 # environment
-JOURNAL_STREAM = 8:52305
+JOURNAL_STREAM = 8:54519
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -279,9 +279,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 66305, inode 17829731): 16 files, no impossibilities.
+# . (device 66305, inode 17829731): 15 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -334,12 +334,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 226 B / avg = 9 B
-# current buf: size = 8162 B / used = 226 B / count = 24 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 23 / storage = 204 B / avg = 8 B
+# current buf: size = 8162 B / used = 204 B / count = 23 / avg = 8 B
 
-# strcache performance: lookups = 27 / hit rate = 11%
+# strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=0/27=0%
-# Finished Make data base on Sun Jul 10 15:52:02 2022
+# Load=23/8192=0%, Rehash=0, Collisions=0/26=0%
+# Finished Make data base on Mon Jul 11 23:53:50 2022
 
  

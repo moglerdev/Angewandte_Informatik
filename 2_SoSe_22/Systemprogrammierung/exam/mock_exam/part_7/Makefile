@@ -1,20 +1,20 @@
 
 CC = gcc -g -fno-stack-protector -Wwrite-strings
-CFLAGS = -Wall -Wextra -Werror -std=$(STD) -pedantic
+CFLAGS = -Wall -Wextra -std=$(STD) -pedantic
 CPPCHECK = cppcheck --enable=warning,style --std=$(STD)
 STD = c11
 
-TARGET = aufgabe3
+TARGET = part_7
 
 OBJECTS = \
-	quadrat.o \
-	wuerfel.o
-
-HEADERS = $(OBJECTS:.o=.h)
 
 .PHONY: all clean cppcheck
 
 all: $(TARGET)
+
+run: clean all
+	clear
+	./$(TARGET)
 
 clean:
 	$(RM) $(TARGET) $(TARGET).o $(OBJECTS)
@@ -22,6 +22,5 @@ clean:
 $(TARGET): $(TARGET).o $(OBJECTS)
 	$(CC) $(LDFLAGS) -o $@ $^
 
-cppcheck: $(HEADERS)$(OBJECTS:.o=.c)
-	$(CPPCHECK) $<
-
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
